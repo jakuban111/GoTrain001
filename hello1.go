@@ -3,14 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("hello world")
-	fun1()
-	for i := 0; i < 100; i++ {
-		if i%2 == 0 {
-			fmt.Print(i)
-		}
-	}
-}
-func fun1() {
-	fmt.Print("działanie funkcji")
+	x := 42
+	y := "James Bond"
+	z := true
+	fmt.Println(x)
+	fmt.Println(y)
+	fmt.Println(z)
+	fmt.Println(x, y, z)
 }
