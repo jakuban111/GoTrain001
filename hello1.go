@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	ninja_1_3()
+	ninja_2_1()
 }
 func ninja_1_1() {
 	x := 42
@@ -29,6 +29,23 @@ func ninja_1_3() {
 	var s string
 	s = fmt.Sprintf("%v\t%v\t%v", x, y, z)
 	fmt.Printf(s)
-	//s := fmt.Sprintf(x, y, z)
-	//fmt.Println(s)
+}
+func ninja_1_4() {
+	type typex int
+	var x typex
+	x = 42
+	fmt.Printf("%T--%v", x, x)
+}
+func ninja_1_5() {
+	type typex int
+	var x typex
+	var y int
+	x = 42
+	y = int(x)
+	fmt.Printf("%T--%v", x, x)
+	fmt.Printf("\n%T--%v", y, y)
+}
+func ninja_2_1() {
+	fmt.Println("ssas", 87)
+
 }
