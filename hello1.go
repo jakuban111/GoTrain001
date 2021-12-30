@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	ninja_4_1()
+	ninja_4_10()
 }
 func test01() {
 	x := 7
@@ -168,33 +168,109 @@ func ninja_3_10() {
 }
 func ninja_4_1() {
 	x := [5]int{42, 43, 44, 45, 46}
-
+	for i, v := range x {
+		fmt.Println(i, v)
+	}
 	fmt.Println(x)
 }
 func ninja_4_2() {
-
+	x := []int{42, 43, 44, 45, 46, 5, 1, 3, 79, 346}
+	for i, v := range x {
+		fmt.Println(i, v)
+	}
+	fmt.Println(x)
 }
 func ninja_4_3() {
+	x := []int{42, 43, 44, 45, 46, 47, 48, 49, 50, 51}
+	for i, v := range x {
+		fmt.Println(i, v)
+	}
 
+	fmt.Println(x[3:5])
 }
 func ninja_4_4() {
-
+	x := []int{42, 43, 44, 45, 46, 47, 48, 49, 50, 51}
+	for i, v := range x {
+		fmt.Println(i, v)
+	}
+	x = append(x, 52)
+	x = append(x, 53, 54, 55)
+	y := []int{56, 57, 58, 59, 60}
+	x = append(x, y...)
+	fmt.Println(x)
 }
 func ninja_4_5() {
-
+	x := []int{42, 43, 44, 45, 46, 47, 48, 49, 50, 51}
+	z := []int{}
+	z = append(x[:3], x[6:]...)
+	fmt.Println(z)
 }
 func ninja_4_6() {
-
+	x := make([]string, 50, 50)
+	states := []string{` Alabama`, ` Alaska`, ` Arizona`, ` Arkansas`, ` California`, ` Colorado`, ` Connecticut`, ` Delaware`, ` Florida`, ` Georgia`, ` Hawaii`, ` Idaho`, ` Illinois`, ` Indiana`, ` Iowa`, ` Kansas`, ` Kentucky`, ` Louisiana`, ` Maine`, ` Maryland`, ` Massachusetts`, ` Michigan`, ` Minnesota`, ` Mississippi`, ` Missouri`, ` Montana`, ` Nebraska`, ` Nevada`, ` New Hampshire`, ` New Jersey`, ` New Mexico`, ` New York`, ` North Carolina`, ` North Dakota`, ` Ohio`, ` Oklahoma`, ` Oregon`, ` Pennsylvania`, ` Rhode Island`, ` South Carolina`, ` South Dakota`, ` Tennessee`, ` Texas`, ` Utah`, ` Vermont`, ` Virginia`, ` Washington`, ` West Virginia`, ` Wisconsin`, ` Wyoming`}
+	for i, v := range states {
+		x[i] = v
+	}
+	fmt.Println((cap(x)))
+	fmt.Println(len(x))
+	fmt.Println(x)
 }
 func ninja_4_7() {
 
+	x1 := []string{"raz", "dwa", "czy"}
+	x2 := []string{"aaa", "sss", "ddd"}
+	x := [][]string{x1, x2}
+	fmt.Println(x)
+	for i1, v1 := range x {
+		for i2, v2 := range v1 {
+			fmt.Println("wiersz:", i1, " wpis:", i2, " wartość:", v2)
+		}
+	}
 }
 func ninja_4_8() {
+	m := map[string][]string{
+		`bond_james`:      []string{`Shaken, not stirred`, `Martinis`, `Women`},
+		`moneypenny_miss`: []string{`James Bond`, `Literature`, `Computer Science`},
+		`no_dr`:           []string{`Being evil`, `Ice cream`, `Sunsets`},
+	}
 
+	for k, v := range m {
+		fmt.Println("This is the record for", k)
+		for i, v2 := range v {
+			fmt.Println("\t", i, v2)
+		}
+	}
 }
 func ninja_4_9() {
-
+	m := map[string][]string{
+		`bond_james`:      []string{`Shaken, not stirred`, `Martinis`, `Women`},
+		`moneypenny_miss`: []string{`James Bond`, `Literature`, `Computer Science`},
+		`no_dr`:           []string{`Being evil`, `Ice cream`, `Sunsets`},
+	}
+	m["Romek"] = []string{"kobity", "dinozaury"}
+	for k, v := range m {
+		fmt.Println("This is the record for", k)
+		for i, v2 := range v {
+			fmt.Println("\t", i, v2)
+		}
+	}
 }
 func ninja_4_10() {
+	m := map[string][]string{
+		`bond_james`:      []string{`Shaken, not stirred`, `Martinis`, `Women`},
+		`moneypenny_miss`: []string{`James Bond`, `Literature`, `Computer Science`},
+		`no_dr`:           []string{`Being evil`, `Ice cream`, `Sunsets`},
+	}
+	m["Romek"] = []string{"kobity", "dinozaury"}
+	if _, ok := m["Romek"]; ok {
+		fmt.Println(`usuwamy go! `)
+		delete(m, "Romek")
+	}
 
+	for k, v := range m {
+		fmt.Println("This is the record for", k)
+		for i, v2 := range v {
+			fmt.Println("\t", i, v2)
+		}
+	}
 }
