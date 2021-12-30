@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	ninja_3_10()
+	ninja_4_1()
 }
 func test01() {
 	x := 7
@@ -165,5 +165,36 @@ func ninja_3_10() {
 	fmt.Println(true || true)
 	fmt.Println(true || false)
 	fmt.Println(!true)
+}
+func ninja_4_1() {
+	x := [5]int{42, 43, 44, 45, 46}
+
+	fmt.Println(x)
+}
+func ninja_4_2() {
+
+}
+func ninja_4_3() {
+
+}
+func ninja_4_4() {
+
+}
+func ninja_4_5() {
+
+}
+func ninja_4_6() {
+
+}
+func ninja_4_7() {
+
+}
+func ninja_4_8() {
+
+}
+func ninja_4_9() {
+
+}
+func ninja_4_10() {
 
 }
