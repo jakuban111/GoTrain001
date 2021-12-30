@@ -7,6 +7,7 @@ import (
 
 func main() {
 	ninja_4_10()
+	ninja_4_1()
 }
 func test01() {
 	x := 7
