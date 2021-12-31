@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	ninja_4_10()
+	ninja_5_2()
 }
 func test01() {
 	x := 7
@@ -273,4 +273,46 @@ func ninja_4_10() {
 			fmt.Println("\t", i, v2)
 		}
 	}
+}
+func ninja_5_1() {
+	type person struct {
+		first string
+		last  string
+	}
+	p1 := person{
+		first: "Alfa",
+		last:  "Bravo",
+	}
+	p2 := person{
+		first: "Charlie",
+		last:  "Delta",
+	}
+	for i, v := range p1.first {
+		fmt.Println(i, "_", v)
+	}
+	fmt.Println(p1)
+	fmt.Println(p2)
+}
+func ninja_5_2() {
+	type person struct {
+		first string
+		last  string
+	}
+	p1 := person{
+		first: "Alfa",
+		last:  "Bravo",
+	}
+	p2 := person{
+		first: "Charlie",
+		last:  "Delta",
+	}
+	fmt.Println(p1)
+	fmt.Println(p2)
+
+}
+func ninja_5_3() {
+
+}
+func ninja_5_4() {
+
 }
