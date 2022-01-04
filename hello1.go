@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	ninja_5_2()
+	alfa()
 }
 func test01() {
 	x := 7
