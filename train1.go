@@ -12,7 +12,7 @@ type secretAgent struct {
 }
 
 func alfa() {
-	test001()
+	test003()
 }
 func test001() {
 
@@ -45,4 +45,7 @@ func test002(i int) int {
 	i = i + 2
 	fmt.Println("test002: ", i)
 	return i
+}
+func test003() {
+	fmt.Println("dd")
 }
