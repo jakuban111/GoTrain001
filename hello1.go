@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	ninja_6_5()
+	ninja_6_9()
 }
 func test01() {
 	x := 7
@@ -389,8 +389,42 @@ func ninja_6_5() {
 	fmt.Println(c1.area65())
 }
 func ninja_6_6() {
-
+	x := func() int {
+		return 7
+	}
+	y := x()
+	fmt.Printf("%t____%v\n", x, x)
+	fmt.Println(y)
 }
-func ninja_6_7() {
+func retval68() func() int {
+	fmt.Println("retval68")
+	x := 0
+	return func() int {
+		x += 2
+		return x
+	}
+}
+func ninja_6_8() {
+	x := retval68()
+	fmt.Println(x())
+	fmt.Println(x())
+}
+func ninja_6_9() {
+	g := func(xi []int) int {
+		if len(xi) == 0 {
+			return 0
+		}
+		if len(xi) == 1 {
+			return xi[0]
+		}
+		return xi[0] + xi[len(xi)-1]
+	}
 
+	x := foo69(g, []int{1, 2, 3, 4, 5, 6})
+	fmt.Println(x)
+}
+func foo69(f func(xi []int) int, ii []int) int {
+	n := f(ii)
+	n++
+	return n
 }
