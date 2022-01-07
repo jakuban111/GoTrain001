@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"time"
 )
 
 func main() {
-	alfa()
+	ninja_6_5()
 }
 func test01() {
 	x := 7
@@ -308,11 +309,88 @@ func ninja_5_2() {
 	}
 	fmt.Println(p1)
 	fmt.Println(p2)
+}
+func ninja_6_1() {
+	fmt.Println(bar61("alfa", 42))
+	fmt.Println(foo61(7))
+}
+func foo61(x int) int {
+	return x + 2
+}
+func bar61(s string, x int) (string, int) {
+
+	return (s + "X"), x - 1
+}
+func ninja_6_2() {
+	fmt.Println(foo62(7, 5, 3))
+	x := []int{7, 5, 3, 2}
+	x = append(x, 7)
+	fmt.Println(bar62(x))
+}
+func foo62(x ...int) int {
+	y := 0
+	for _, v := range x {
+		y += v
+	}
+	return y
+}
+func bar62(x []int) int {
+	y := 0
+	for _, v := range x {
+		y += v
+	}
+	return y
+}
+func ninja_6_3() {
+	fmt.Println("alfa")
+	defer fmt.Println("beta")
+	fmt.Println("gama")
+}
+
+type person64 struct {
+	first string
+	last  string
+	age   int
+}
+
+func (p person64) speak64() {
+	fmt.Println("I'm", p.first, p.last, "and I'm", p.age, "y. old")
+}
+func ninja_6_4() {
+	p1 := person64{
+		first: "Jack",
+		last:  "Sparrow",
+		age:   99,
+	}
+	p1.speak64()
+}
+
+type square65 struct {
+	a float64
+}
+type circle65 struct {
+	a float64
+}
+
+func (s square65) area65() float64 {
+	return float64(s.a * s.a)
+}
+func (c circle65) area65() float64 {
+	return float64(c.a * c.a * math.Pi)
+}
+func ninja_6_5() {
+	s1 := square65{
+		a: (5.4363456),
+	}
+	c1 := circle65{
+		a: (4.762),
+	}
+	fmt.Println(s1.area65())
+	fmt.Println(c1.area65())
+}
+func ninja_6_6() {
 
 }
-func ninja_5_3() {
-
-}
-func ninja_5_4() {
+func ninja_6_7() {
 
 }

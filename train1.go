@@ -47,5 +47,19 @@ func test002(i int) int {
 	return i
 }
 func test003() {
-	fmt.Println("dd")
+	a := incrementor()
+	b := incrementor()
+	fmt.Println(a())
+	fmt.Println(a())
+	fmt.Println(b())
+	fmt.Println(b())
+	fmt.Println(b())
+}
+func incrementor() func() int {
+	var x int
+	fmt.Println("start")
+	return func() int {
+		x++
+		return x
+	}
 }
