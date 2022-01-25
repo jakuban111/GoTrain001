@@ -1,13 +1,17 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"math"
+	"os"
+	"runtime"
+	"sync"
 	"time"
 )
 
 func main() {
-	ninja_6_9()
+	ninja_9_2()
 }
 func test01() {
 	x := 7
@@ -427,4 +431,140 @@ func foo69(f func(xi []int) int, ii []int) int {
 	n := f(ii)
 	n++
 	return n
+}
+
+type user81 struct {
+	First string
+	Age   int
+}
+
+func ninja_8_1() {
+	u1 := user81{
+		First: "James",
+		Age:   32,
+	}
+
+	u2 := user81{
+		First: "Moneypenny",
+		Age:   27,
+	}
+
+	u3 := user81{
+		First: "M",
+		Age:   54,
+	}
+
+	users := []user81{u1, u2, u3}
+
+	fmt.Println(users)
+
+	bs, err := json.Marshal(users)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(string(bs))
+	var users2 []user81
+	err2 := json.Unmarshal(bs, &users2)
+	if err2 != nil {
+		fmt.Println("error:", err)
+	}
+	fmt.Println(users2)
+
+}
+
+type user83 struct {
+	First   string
+	Last    string
+	Age     int
+	Sayings []string
+}
+
+func ninja_8_3() {
+	u1 := user83{
+		First: "James",
+		Last:  "Bond",
+		Age:   32,
+		Sayings: []string{
+			"Shaken, not stirred",
+			"Youth is no guarantee of innovation",
+			"In his majesty's royal service",
+		},
+	}
+
+	u2 := user83{
+		First: "Miss",
+		Last:  "Moneypenny",
+		Age:   27,
+		Sayings: []string{
+			"James, it is soo good to see you",
+			"Would you like me to take care of that for you, James?",
+			"I would really prefer to be a secret agent myself.",
+		},
+	}
+
+	u3 := user83{
+		First: "M",
+		Last:  "Hmmmm",
+		Age:   54,
+		Sayings: []string{
+			"Oh, James. You didn't.",
+			"Dear God, what has James done now?",
+			"Can someone please tell me where James Bond is?",
+		},
+	}
+
+	users := []user83{u1, u2, u3}
+
+	fmt.Println(users, "\n")
+
+	err := json.NewEncoder(os.Stdout).Encode(users)
+	if err != nil {
+		fmt.Println("We did something wrong and here's the error:", err)
+	}
+}
+
+var wg91 sync.WaitGroup
+
+func ninja_9_1() {
+	fmt.Println("OS\t\t", runtime.GOOS)
+	fmt.Println("ARCH\t\t", runtime.GOARCH)
+	fmt.Println("CPUs\t\t", runtime.NumCPU())
+	fmt.Println("Goroutines\t", runtime.NumGoroutine())
+
+	wg91.Add(2)
+	go func() {
+		fmt.Println("jeden")
+		wg91.Done()
+	}()
+	go func() {
+		fmt.Println("dwa")
+		wg91.Done()
+	}()
+
+	fmt.Println("CPUs\t\t", runtime.NumCPU())
+	fmt.Println("Goroutines\t", runtime.NumGoroutine())
+	wg91.Wait()
+	fmt.Println("CPUs\t\t", runtime.NumCPU())
+	fmt.Println("Goroutines\t", runtime.NumGoroutine())
+}
+
+type person92 struct {
+	First string
+}
+type human92 interface {
+	speak92()
+}
+
+func (p *person92) speak92() {
+	fmt.Println("hello")
+}
+func saySomething92(h human92) {
+	h.speak92()
+}
+func ninja_9_2() {
+	p1 := person92{
+		First: "Roman",
+	}
+	fmt.Println(p1)
+	saySomething92(&p1)
 }
