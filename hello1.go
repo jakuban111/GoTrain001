@@ -7,11 +7,12 @@ import (
 	"os"
 	"runtime"
 	"sync"
+	"sync/atomic"
 	"time"
 )
 
 func main() {
-	ninja_9_2()
+	ninja_9_6()
 }
 func test01() {
 	x := 7
@@ -567,4 +568,80 @@ func ninja_9_2() {
 	}
 	fmt.Println(p1)
 	saySomething92(&p1)
+}
+func ninja_9_3() {
+	fmt.Println("CPUs:\n", runtime.NumCPU())
+	fmt.Println("GoRoutiness:", runtime.NumGoroutine())
+	counter := 0
+	const gs = 100
+	var wg sync.WaitGroup
+	wg.Add(gs)
+	for i := 0; i < gs; i++ {
+		go func() {
+			v := counter
+			//time.Sleep(time.Second)
+			runtime.Gosched()
+			v++
+			counter = v
+			wg.Done()
+		}()
+		fmt.Printf("Counter:%v", counter)
+		fmt.Printf("\tRoutines: %v\n", runtime.NumGoroutine())
+	}
+	wg.Wait()
+	fmt.Println("GoRoutiness:", runtime.NumGoroutine())
+	fmt.Println("koniec: ", counter)
+}
+func ninja_9_4() {
+	fmt.Println("CPUs:\n", runtime.NumCPU())
+	fmt.Println("GoRoutiness:", runtime.NumGoroutine())
+	counter := 0
+	const gs = 100
+	var wg sync.WaitGroup
+	wg.Add(gs)
+	var mu sync.Mutex
+	for i := 0; i < gs; i++ {
+		go func() {
+			mu.Lock()
+			v := counter
+			time.Sleep(time.Second)
+			runtime.Gosched()
+			v++
+			counter = v
+			mu.Unlock()
+			wg.Done()
+		}()
+		fmt.Printf("Counter:%v", counter)
+		fmt.Printf("\tRoutines: %v\n", runtime.NumGoroutine())
+	}
+	wg.Wait()
+	fmt.Println("GoRoutiness:", runtime.NumGoroutine())
+	fmt.Println("koniec: ", counter)
+}
+func ninja_9_5() {
+	fmt.Println("CPUs:", runtime.NumCPU())
+	fmt.Println("Goroutines:", runtime.NumGoroutine())
+
+	var counter int64
+
+	const gs = 100
+	var wg sync.WaitGroup
+	wg.Add(gs)
+
+	for i := 0; i < gs; i++ {
+		go func() {
+			atomic.AddInt64(&counter, 1)
+			runtime.Gosched()
+			fmt.Println("Counter\t", atomic.LoadInt64(&counter))
+			wg.Done()
+		}()
+		fmt.Println("Goroutines:", runtime.NumGoroutine())
+	}
+	wg.Wait()
+	fmt.Println("Goroutines:", runtime.NumGoroutine())
+	fmt.Println("count:", counter)
+}
+func ninja_9_6() {
+	fmt.Println(runtime.GOARCH)
+	fmt.Println(runtime.GOOS)
 }
